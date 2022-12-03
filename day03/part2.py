@@ -14,12 +14,13 @@ def compute(s: str) -> int:
     rtn_val = 0
     lines = s.splitlines()
     letter = 0
-    for line in lines:
-        line_length = len(line)
-        comp1 = line[:line_length//2]
-        comp2 = line[line_length//2:]
-        for i in comp1:
-            if i in comp2:
+    for line in range(0, len(lines), 3):
+        e1 = lines[line]
+        e2 = lines[line+1]
+        e3 = lines[line+2]
+
+        for i in e1:
+            if i in e2 and i in e3:
                 letter = i
                 break
         if letter.islower():
@@ -38,7 +39,7 @@ wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
 ttgJtRGJQctTZtZT
 CrZsJsPPZsGzwwsLwLmpwMDw
 """
-EXPECTED = 157
+EXPECTED = 70
 
 
 @pytest.mark.parametrize(

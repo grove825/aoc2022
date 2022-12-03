@@ -11,21 +11,34 @@ INPUT_TXT = os.path.join(os.path.dirname(__file__), "input.txt")
 
 
 def compute(s: str) -> int:
-    numbers = support.parse_numbers_split(s)
-    for n in numbers:
-        pass
-
+    rtn_val = 0
     lines = s.splitlines()
+    letter = 0
     for line in lines:
-        pass
-    # TODO: implement solution here!
-    return 0
+        line_length = len(line)
+        comp1 = line[:line_length//2]
+        comp2 = line[line_length//2:]
+        for i in comp1:
+            if i in comp2:
+                letter = i
+                break
+        if letter.islower():
+            rtn_val += ord(letter) - 96
+        else:
+            rtn_val += ord(letter) - 38
+
+    return rtn_val
 
 
 INPUT_S = """\
-
+vJrwpWtwJgWrhcsFMMfFFhFp
+jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+PmmdzqPrVvPwwTWBwg
+wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+ttgJtRGJQctTZtZT
+CrZsJsPPZsGzwwsLwLmpwMDw
 """
-EXPECTED = 1
+EXPECTED = 157
 
 
 @pytest.mark.parametrize(
